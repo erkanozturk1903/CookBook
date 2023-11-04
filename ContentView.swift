@@ -9,16 +9,52 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-           Image("Kodeco")
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                Text("Welcome to my app!")
+                NavigationLink(destination: DetailView()) {
+                    Text("Go to Detail View")
+                }
+                /*
+                ProfilePicture()
+                Spacer()
+                ButtonCreated()
+                Spacer()
+                ImageFile()
+                Text("Welcome to my app!")
+                    .navigationTitle("Home")
+                    .navigationBarTitleDisplayMode(.large)
+                 */
+            }
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        print("Settings tapped")
+                    }) {
+                        Text("Settings")
+                    }
+                }
+            }
+
         }
-        .padding()
+
+    }
+}
+
+struct DetailView: View {
+    var body: some View {
+        Text("This is the detail view!")
+            .navigationTitle("Detail")
+            .navigationBarTitleDisplayMode(.large)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().previewDevice("iPhone 14 Pro")
+        ContentView().preferredColorScheme(.dark)
+        ContentView().previewInterfaceOrientation(.landscapeLeft)
     }
 }
